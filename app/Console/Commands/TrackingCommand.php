@@ -13,7 +13,7 @@ class TrackingCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'track:accounts {--account_id=}';
+    protected $signature = 'track {--account_id=}';
 
     /**
      * Command description.

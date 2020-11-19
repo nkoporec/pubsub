@@ -1,24 +1,41 @@
-# Lumen PHP Framework
+# About
+A simple Pub/Sub example written in Lumen Framework and using Redis.
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+It consist of three parts:
+  - Tracking system
+  - Pub/sub service
+  - CLI app
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+## Tracking system
+<p>And endpoint is located at `BASE_URL/accountId?data=”<data>` that accepts an account ID. If the account exists it will check if it is active and then publish Account ID, Account Name and name query parameter to Redis channel</p>
 
-## Official Documentation
+To start publishing to a channel, use API endpoint (POST).
+`BASE_URL/accountId?data=”<data>`
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+## Pub/Sub
+<p>It's using a built-in lumen Redis commands to interact with the Redis</p>
 
-## Contributing
+## Cli App
+<p>It's a Lumen artisan command, than accepts an optional account_id parameter. The parameter will filter messages so it's only displaying it for the required account id.</p>
+<p> The command will connect to Redis and listed to messages on a predefined channel</p>
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+To start listening, use <br>
+`make track`
 
-## Security Vulnerabilities
+You can filter by account id, by using command: <br>
+`make track ACCOUNT_ID=`
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+# Requirements
+ - Docker
+ - Docker-compose
 
-## License
+# Install
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. Clone repository
+2. Run `make install`
+
+This will build the docker containers and seed the database.
+
+# Tests
+Run `make test`
+
