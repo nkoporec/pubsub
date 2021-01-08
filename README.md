@@ -17,7 +17,7 @@ To start publishing to a channel, use API endpoint (POST).
 
 ## Cli App
 <p>It's a Lumen artisan command, than accepts an optional account_id parameter. The parameter will filter messages so it's only displaying it for the required account id.</p>
-<p> The command will connect to Redis and listed to messages on a predefined channel</p>
+<p> The command will connect to Redis and listen to messages on a predefined channel</p>
 
 To start listening, use <br>
 `make track`
